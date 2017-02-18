@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a0136ddc888219948aaac0ba8f854ac4
+timeCreated: 1487368889
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - Waypoint: {fileID: 1984858511966958, guid: fc588d04a35c19e4083fec24fbd0bd23, type: 2}
+  - activeTarget: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
