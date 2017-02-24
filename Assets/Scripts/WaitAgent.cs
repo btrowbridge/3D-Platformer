@@ -24,14 +24,7 @@ public class WaitAgent : SimpleAgent {
     {
         if (returnToStart)
         {
-            if (ArrivedAt(initialTransform.position))
-            {
-                transform.rotation = Quaternion.Slerp(transform.rotation, initialTransform.rotation, Time.deltaTime);
-            }
-            else
-            {
-                SetDestination(initialTransform.position);
-            }
+            SetDestination(initialTransform.position);
         }
         else
         {

@@ -61,7 +61,7 @@ public abstract class SimpleAgent : MonoBehaviour {
         //    HandleRedirects();
         //}
 
-        if(agentControl.attacking)
+        if (agentControl.attacking)
         {
             SetDestination(transform.position);
         }
@@ -89,8 +89,12 @@ public abstract class SimpleAgent : MonoBehaviour {
 
         //If we want them to have direct sight do raycast to check
         RaycastHit hit = new RaycastHit();
-        if (useLineOfSight && !Physics.Raycast(transform.position, targetDirection, out hit)) return false;
-        else if (hit.transform != activeTarget) return false;
+        bool targetHit = Physics.Raycast(transform.position, targetDirection, out hit);
+        if (useLineOfSight)
+        {
+            if (!targetHit) return false;
+            else if (hit.transform != activeTarget) return false;
+        }
 
         //If we want the player to cross their FOV find angle
         if (useFOV && Mathf.Asin(Vector3.Dot(transform.forward.normalized, targetDirection.normalized)) > FOV) return false;

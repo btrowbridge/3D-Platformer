@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class Health : MonoBehaviour {
@@ -14,14 +15,15 @@ public class Health : MonoBehaviour {
 
     private GameManager gm;
     private Animator anim;
+    private NavMeshAgent agent;
 	// Use this for initialization
 	void Start () {
         anim = GetComponentInChildren<Animator>();
         maxHealth = health;
         UpdateHealthBar();
         gm = GameObject.FindObjectOfType<GameManager>();
+        agent = GetComponent<NavMeshAgent>();
 	}
-	
 
     public void UpdateHealthBar()
     {
@@ -38,6 +40,7 @@ public class Health : MonoBehaviour {
 
             if (tag == "Enemy" && anim != null)
             {
+                agent.Stop();
                 anim.SetTrigger("Die");
                 StartCoroutine(_Death());
                 gm.ScorePoints(maxHealth);
@@ -58,6 +61,7 @@ public class Health : MonoBehaviour {
     {
         while (anim.GetCurrentAnimatorStateInfo(0).IsName("Death")) { }
         yield return null;
-        Destroy(gameObject);
+        DestroyObject(gameObject, 1.0f);
+       
     }
 }

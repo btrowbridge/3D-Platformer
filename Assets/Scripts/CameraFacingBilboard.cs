@@ -9,6 +9,8 @@ public class CameraFacingBillboard : MonoBehaviour
     void Start()
     {
         m_Camera = FindObjectOfType<Camera>();
+
+        GetComponent<Canvas>().worldCamera = m_Camera;
         
     }
     void Update()

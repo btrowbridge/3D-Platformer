@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
-    
+    public int Damage;
     public GameObject Ammo;
     public Transform AmmoSpawnPoint;
     //public AudioClip Audio;
@@ -37,6 +37,8 @@ public class Fire : MonoBehaviour
     protected void Shoot()
     {
         var bullet = GameObject.Instantiate(Ammo, AmmoSpawnPoint.position, Camera.main.transform.rotation);
+        bullet.GetComponent<Explode>().collisionDamage = Damage;
+
         bullet.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * FireForce);
         anim.SetTrigger("Attack");
     }

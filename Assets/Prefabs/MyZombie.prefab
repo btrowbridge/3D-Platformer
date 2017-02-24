@@ -995,9 +995,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1531321485679364}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 318.09534, y: 0, z: 372.1029}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 64.37276, y: -49.375, z: 210.86655}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4656293031524328}
   - {fileID: 4629374890933446}
@@ -1498,7 +1498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDamage: 1
-  attackRange: 3
+  attackRange: 2
 --- !u!114 &114333439489520810
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1573,7 +1573,7 @@ MonoBehaviour:
   Waypoint: {fileID: 1984858511966958, guid: fc588d04a35c19e4083fec24fbd0bd23, type: 2}
   activeTarget: {fileID: 0}
   autoTargetPlayer: 1
-  detectionDistance: 5
+  detectionDistance: 8
   useLineOfSight: 0
   useFOV: 0
   FOV: 180
@@ -2490,7 +2490,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1531321485679364}
   m_Enabled: 1
   m_Radius: 0.5
-  m_Speed: 0.5
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

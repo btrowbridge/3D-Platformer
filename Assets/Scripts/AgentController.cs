@@ -2,12 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-[RequireComponent(typeof(Animator))]
 public class AgentController : MonoBehaviour {
 
     public int attackDamage = 1;
     public float attackRange = 3;
+    public float _animThreshold = 1.0f;
 
     [NonSerialized]
     public bool attacking = false;
@@ -18,7 +19,7 @@ public class AgentController : MonoBehaviour {
     Animator anim;
     Rigidbody rb;
     GameObject player;
-    
+    NavMeshAgent agent;
 
     
 	// Use this for initialization
@@ -27,24 +28,28 @@ public class AgentController : MonoBehaviour {
         rb = GetComponentInChildren<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player");
         previousPosition = transform.position;
+        agent = GetComponent<NavMeshAgent>();
 	}
 
     void FixedUpdate()
     {
+        float speed = agent.velocity.magnitude;
+
         if (Vector3.Distance(player.transform.position, transform.position) <= attackRange)
         {
             Attack();
             anim.SetFloat("Walking", 0);
-
+            anim.SetBool("Walk", false);
         }
         else
         {
+            
             canDamage = false;
-            float speed = (transform.position - previousPosition).magnitude / Time.deltaTime;
-            anim.SetFloat("Walking", speed);
+            anim.SetFloat("Walking", speed) ;
             anim.SetBool("Walk", speed > 0);
-            previousPosition = transform.position;
+            
         }
+        previousPosition = transform.position;
         attacking = anim.GetCurrentAnimatorStateInfo(0).IsName("Attack");
     }
 	
@@ -55,7 +60,6 @@ public class AgentController : MonoBehaviour {
         {
             anim.SetTrigger("Attack");
             canDamage = true;
-            attacking = true;
         }
         
     }
@@ -69,4 +73,13 @@ public class AgentController : MonoBehaviour {
             canDamage = false;
         }
     }
+    //void OnCollisionEnter(Collision other)
+    //{
+    //    if (canDamage && other.gameObject.tag == "Player")
+    //    {
+    //        Health playerHealth = other.gameObject.GetComponent<Health>();
+    //        playerHealth.TakeDamage(attackDamage);
+    //        canDamage = false;
+    //    }
+    //}
 }

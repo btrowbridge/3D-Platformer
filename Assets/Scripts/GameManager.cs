@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void LateUpdate () {
 		if (Score > powerUPCounter)
         {
             PowerUp();
@@ -40,7 +40,11 @@ public class GameManager : MonoBehaviour {
 
         foreach(var enemy in Enemies)
         {
+            if (enemy == null) continue;
             var enemyHealth = enemy.GetComponent<Health>();
+
+            if (enemyHealth == null) continue;
+
             enemyHealth.health = Mathf.RoundToInt(enemyHealth.health * EnemyPowerUpRatio);
             enemyHealth.maxHealth = Mathf.RoundToInt(enemyHealth.maxHealth * EnemyPowerUpRatio);
             enemyHealth.UpdateHealthBar();
@@ -48,8 +52,8 @@ public class GameManager : MonoBehaviour {
         }
 
         var playerHealth = player.GetComponent<Health>();
-        playerHealth.health = Mathf.RoundToInt(playerHealth.health * EnemyPowerUpRatio);
-        playerHealth.maxHealth = Mathf.RoundToInt(playerHealth.maxHealth * EnemyPowerUpRatio);
+        playerHealth.health = Mathf.RoundToInt(playerHealth.health * PlayerPowerUpRatio);
+        playerHealth.maxHealth = Mathf.RoundToInt(playerHealth.maxHealth * PlayerPowerUpRatio);
         playerHealth.UpdateHealthBar();
 
     }
